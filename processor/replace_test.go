@@ -9,7 +9,7 @@ import (
 
 func TestReplaceVariables_SinglePlaceholder(t *testing.T) {
 	input := "Привет, ${Имя}! Дата: ${Дата}."
-	data := map[string]interface{}{
+	data := map[string]any{
 		"name": "Алексей",
 		"date": "2023-01-01",
 	}
@@ -17,13 +17,13 @@ func TestReplaceVariables_SinglePlaceholder(t *testing.T) {
 		vars.NewVariable(
 			"Имя",
 			vars.FnGet,
-			map[string]interface{}{"data_get": "name"},
+			map[string]any{"data_get": "name"},
 			map[string]string{},
 		),
 		vars.NewVariable(
 			"Дата",
 			vars.FnFormat,
-			map[string]interface{}{"date_format": "02.01.2006", "data_get": "date"},
+			map[string]any{"date_format": "02.01.2006", "data_get": "date"},
 			map[string]string{},
 		),
 	}
